@@ -1,0 +1,42 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    
+    .image-wrapper{
+        img{
+            object-fit: contain;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+    }
+    .title{
+        font-weight: 700;
+        font-size: 20px;
+        height: 10px;
+    }
+    .range-wrapper{
+        height: 19px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        width: 100%;
+        .stars-container{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+    }
+    .price-wrapper{
+        height: 32px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 24px;
+        .old-price{
+            color: #00000066;
+            text-decoration: line-through;
+        }
+    }
+}

@@ -1,0 +1,5 @@
+export {default as BrandsAdSection} from './BrandsAd'
+export {default as ByDressSection} from './ByDress'
+export {default as NewArrivalsSection} from './NewArrivals'
+export {default as TopSellingSection} from './TopSelling'
+export {default as MainSection} from './Main'
