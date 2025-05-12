@@ -6,7 +6,7 @@ import { BsFacebook, BsGithub, BsInstagram, BsTwitter } from 'react-icons/bs'
 function Footer() {
   return (
     <footer>
-      <div className="top-footer">
+      <div className="top-footer" >
         <h3>
           STAY UPTO DATE ABOUT <br className="hide-on-mobile" />
           OUR LATEST OFFERS
