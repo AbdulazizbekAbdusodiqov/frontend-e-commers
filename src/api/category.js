@@ -12,3 +12,4 @@ export const getCategoriesApi = async()=>{
         toast.error("Failed to fetch categories")
     }
 }
+

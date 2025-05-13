@@ -1,20 +1,60 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './Header.scss';
 import { MdClear } from 'react-icons/md';
 import { BiCart, BiSearch } from 'react-icons/bi';
 import { CgProfile } from 'react-icons/cg';
 import { GiHamburgerMenu } from "react-icons/gi";
+import { MdCircleNotifications } from "react-icons/md";
 
 function Header() {
   const [isFragmentVisible, setIsFragmentVisible] = useState(true);
-  const contentUl = useRef()
+  const [isOnNot, setIsOnNot] = useState(false);
+
+  const notificationWrapperRef = useRef(null);
+  const notificationRespWrapperRef = useRef(null);
+  const contentUlRef = useRef(null);
+
   const handleClearClick = () => {
     setIsFragmentVisible(false);
   };
 
+  const handleClickBasket = () => {
+    window.location.href = '/basket';
+  };
+
   const handleBurgerClick = () => {
-    contentUl.current.classList.toggle("resp")
-  }
+    if (contentUlRef.current) {
+      contentUlRef.current.classList.toggle("resp");
+    }
+  };
+
+  useEffect(() => {
+    let data = localStorage.getItem("products") || "[]";
+    data = JSON.parse(data);
+
+    if (data.length > 0) {
+      setIsOnNot(true);
+    } else {
+      setIsOnNot(false);
+    }
+
+    if (notificationWrapperRef.current) {
+      if (isOnNot) {
+        notificationWrapperRef.current.classList.add("onn");
+      } else {
+        notificationWrapperRef.current.classList.remove("onn");
+      }
+    }
+
+    if (notificationRespWrapperRef.current) {
+      if (isOnNot) {
+        notificationRespWrapperRef.current.classList.add("onn");
+      } else {
+        notificationRespWrapperRef.current.classList.remove("onn");
+      }
+    }
+  }, [isOnNot]);
+
   return (
     <header>
       {isFragmentVisible && (
@@ -38,7 +78,8 @@ function Header() {
             <input type="text" placeholder='Search for products...' />
           </div>
           <div className='card-and-profile-icons'>
-            <BiCart />
+            <MdCircleNotifications ref={notificationWrapperRef} className='basket-notification' size={20} />
+            <BiCart onClick={handleClickBasket} style={{ cursor: "pointer" }} />
             <CgProfile />
           </div>
         </div>
@@ -48,11 +89,12 @@ function Header() {
             <h3>SHOP.CO</h3>
           </div>
           <div className='card-and-profile-icons'>
+            <MdCircleNotifications ref={notificationRespWrapperRef} className='basket-notification' />
             <BiSearch color='black' />
-            <BiCart />
+            <BiCart onClick={handleClickBasket} style={{ cursor: "pointer" }} />
             <CgProfile />
           </div>
-          <div className='navbar-wrapper resp__content-ul' ref={contentUl} >
+          <div className='navbar-wrapper resp__content-ul' ref={contentUlRef}>
             <ul>Shop
               <li>On Sale</li>
               <li>New Arrivals</li>

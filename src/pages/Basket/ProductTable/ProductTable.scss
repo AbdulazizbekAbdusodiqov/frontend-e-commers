@@ -1,0 +1,121 @@
+.product-wrapper {
+    display: flex;
+    align-items: center;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid #f0f0f0;
+    gap: 1.5rem;
+    position: relative;
+    
+    // Product image
+    .product-image {
+      flex-shrink: 0;
+      width: 80px;
+      height: 80px;
+      background-color: #f9f9f9;
+      border-radius: 8px;
+      overflow: hidden;
+      
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+    
+    // Product information
+    .product-info {
+      flex: 1;
+      
+      .product-title {
+        font-size: 1rem;
+        font-weight: 600;
+        margin: 0 0 0.5rem 0;
+        color: #333;
+      }
+      
+      .product-detail {
+        font-size: 0.875rem;
+        color: #666;
+        margin: 0.25rem 0;
+        
+        span {
+          font-weight: 500;
+        }
+      }
+      
+      .product-price {
+        font-size: 1.25rem;
+        font-weight: 700;
+        margin: 0.5rem 0 0 0;
+        color: #000;
+      }
+    }
+    
+    // Product actions (delete and quantity)
+    .product-actions {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 1rem;
+      
+      .delete-button {
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: #ff3b30;
+        padding: 0.25rem;
+        
+        &:hover {
+          opacity: 0.8;
+        }
+      }
+      
+      .quantity-control {
+        display: flex;
+        align-items: center;
+        background-color: #f5f5f5;
+        border-radius: 9999px;
+        padding: 0.25rem;
+        
+        .quantity-button {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 32px;
+          height: 32px;
+          border: none;
+          background-color: inherit;
+          cursor: pointer;
+          color: #333;
+          border-radius: 50%;
+          transition: background-color 0.2s;
+          
+          &:hover {
+            background-color: #e5e5e5;
+          }
+          
+        }
+        
+        .quantity-value {
+          width: 2rem;
+          text-align: center;
+          font-weight: 500;
+          font-size: 0.9rem;
+        }
+      }
+    }
+    
+    // Responsive adjustments
+    @media (max-width: 576px) {
+      flex-direction: column;
+      align-items: flex-start;
+      
+      .product-actions {
+        flex-direction: row;
+        width: 100%;
+        justify-content: space-between;
+        margin-top: 1rem;
+      }
+    }
+  }
+  

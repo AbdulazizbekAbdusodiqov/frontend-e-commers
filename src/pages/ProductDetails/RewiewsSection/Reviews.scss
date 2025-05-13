@@ -1,0 +1,57 @@
+.reviews-section {
+    padding-top: 40px;
+  
+    h2 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+  
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+  
+    .review-card {
+      border: 1px solid #e5e5e5;
+      border-radius: 12px;
+      padding: 20px;
+      background-color: white;
+  
+      .stars {
+        color: #f5a623;
+        font-size: 18px;
+        margin-bottom: 10px;
+      }
+  
+      h4 {
+        margin: 0;
+        font-weight: bold;
+  
+        .verified {
+          color: green;
+          margin-left: 5px;
+        }
+      }
+  
+      p {
+        margin: 10px 0;
+      }
+  
+      small {
+        color: gray;
+      }
+    }
+  
+    .load-more {
+      margin: 30px auto 0;
+      display: block;
+      padding: 10px 20px;
+      background-color: black;
+      color: white;
+      border: none;
+      border-radius: 999px;
+      cursor: pointer;
+    }
+  }
+  

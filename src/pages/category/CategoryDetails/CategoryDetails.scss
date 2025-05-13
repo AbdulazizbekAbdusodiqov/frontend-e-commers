@@ -1,0 +1,244 @@
+.filter-sidebar {
+  width: 100%;
+  max-width: 280px;
+  padding: 20px 15px;
+  background-color: #fff;
+  border-right: 1px solid #eee;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  
+  .filter-header {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0 0 20px 0;
+    color: #333;
+  }
+  
+  .filter-section {
+    margin-bottom: 25px;
+    
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      margin-bottom: 15px;
+    }
+    
+    .section-title {
+      font-size: 16px;
+      font-weight: 600;
+      margin: 0 0 15px 0;
+      color: #333;
+    }
+    
+    .chevron-icon {
+      color: #999;
+      font-size: 18px;
+    }
+  }
+  
+  // Category items
+  .category-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #f5f5f5;
+    cursor: pointer;
+    
+    span {
+      font-size: 14px;
+      color: #333;
+    }
+    
+    &:hover {
+      color: #000;
+      background-color: #f9f9f9;
+    }
+    
+    &.active {
+      font-weight: 600;
+      color: #000;
+      
+      .chevron-icon {
+        color: #000;
+      }
+    }
+  }
+  
+  // Price slider
+  .price-slider-container {
+    padding: 10px 0 30px;
+    position: relative;
+  }
+  
+  .price-slider {
+    height: 4px;
+    
+    .range-slider__range {
+      background-color: #000;
+    }
+    
+    .range-slider__thumb {
+      background-color: #000;
+      width: 16px;
+      height: 16px;
+      
+      &[data-lower] {
+        background-color: #000;
+      }
+      
+      &[data-upper] {
+        background-color: #000;
+      }
+    }
+  }
+  
+  .price-thumb-label {
+    position: absolute;
+    bottom: -20px;
+    transform: translateX(-50%);
+    font-size: 12px;
+    font-weight: 600;
+    color: #333;
+    white-space: nowrap;
+    background-color: transparent !important;
+  }
+  
+  // Color options
+  .color-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+    
+    .color-option {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      border: 1px solid #ddd;
+      cursor: pointer;
+      transition: transform 0.2s;
+      
+      &:hover {
+        transform: scale(1.1);
+      }
+      
+      &.selected {
+        box-shadow: 0 0 0 2px #000;
+      }
+    }
+  }
+  
+  // Size options
+  .size-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+    
+    .size-option {
+      padding: 8px 12px;
+      background-color: #f5f5f5;
+      border: none;
+      border-radius: 4px;
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.2s;
+      
+      &:hover {
+        background-color: #eee;
+      }
+      
+      &.selected {
+        background-color: #000;
+        color: #fff;
+      }
+    }
+  }
+  
+  // Style options
+  .style-options {
+    margin-top: 10px;
+    
+    .style-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid #f5f5f5;
+      cursor: pointer;
+      
+      span {
+        font-size: 14px;
+        color: #333;
+      }
+      
+      &:hover {
+        color: #000;
+        background-color: #f9f9f9;
+      }
+      
+      &.active {
+        font-weight: 600;
+        
+        span {
+          color: #000;
+        }
+        
+        .chevron-icon {
+          color: #000;
+        }
+      }
+    }
+  }
+  
+  // Filter action buttons
+  .filter-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+    
+    .reset-filter-btn {
+      flex: 1;
+      padding: 12px;
+      background-color: #fff;
+      color: #000;
+      border: 1px solid #ddd;
+      border-radius: 30px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      
+      &:hover {
+        background-color: #f5f5f5;
+        border-color: #ccc;
+      }
+    }
+    
+    .apply-filter-btn {
+      flex: 2;
+      padding: 12px;
+      background-color: #000;
+      color: #fff;
+      border: none;
+      border-radius: 30px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color 0.2s;
+      
+      &:hover {
+        background-color: #333;
+      }
+    }
+  }
+}
+
+// Override the default slider styles
+.range-slider__thumb {
+  [data-lower], [data-upper] {
+    background-color: #000 !important;
+  }
+}

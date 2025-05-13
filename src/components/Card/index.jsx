@@ -2,9 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { FaStarHalf, FaStar } from "react-icons/fa";
 
 import "./Card.scss"
+import { Link } from 'react-router';
 
 const Card = ({ product }) => {
     const [stars, setStars] = useState([]);
+    console.log("Bu Productni IDsi komron :",product.id);
+    
 
     useEffect(() => {
         generateStars();
@@ -39,10 +42,13 @@ const Card = ({ product }) => {
 
     if (!product) return null;
 
+
     return (
         <div className='card'>
             <div className='image-wrapper'>
-                <img style={{ width: "295px" }} src={product.images?.[0]} alt={product.title} />
+                <Link to={`productDetail/${product.id}`}>
+                    <img style={{ width: "295px" }} src={product.images?.[0]} alt={product.title} />
+                </Link>
             </div>
             <h2 className='title'>
                 {product.title}
@@ -59,6 +65,7 @@ const Card = ({ product }) => {
             </div>
         </div>
     );
+    
 };
 
 export default Card;
