@@ -3,28 +3,33 @@
 import { useEffect, useState } from "react"
 import ReactRangeSliderInput from "react-range-slider-input"
 import { HiChevronRight, HiChevronDown } from "react-icons/hi2"
-import { getProductsCategoryFilterApi } from "../../../api/product"
+import { getProductsCategoryFilterApi } from "@/api/product";
+
 
 import "react-range-slider-input/dist/style.css"
 import "./CategoryDetails.scss"
 
-const CategoryDetails = ({ onFilterChange, initialCategory = "" }) => {
+const CategoryDetails = ({ onFilterChange, initialCategory = "Casual" }) => {
+  // State for filters
   const [priceRange, setPriceRange] = useState([50, 500])
   const [selectedCategory, setSelectedCategory] = useState(initialCategory)
   const [selectedColors, setSelectedColors] = useState([])
   const [selectedSizes, setSelectedSizes] = useState([])
   const [selectedStyles, setSelectedStyles] = useState([])
 
+  // State for expanded sections
   const [expandedSections, setExpandedSections] = useState({
     colors: true,
     size: true,
     dressStyle: true,
   })
 
+  // State for available filter options (will be populated from API)
   const [availableColors, setAvailableColors] = useState([])
   const [availableSizes, setAvailableSizes] = useState([])
   const [availableStyles, setAvailableStyles] = useState([])
 
+  // Toggle section expansion
   const toggleSection = (section) => {
     setExpandedSections({
       ...expandedSections,
@@ -32,6 +37,7 @@ const CategoryDetails = ({ onFilterChange, initialCategory = "" }) => {
     })
   }
 
+  // Handle color selection
   const handleColorSelect = (color) => {
     if (selectedColors.includes(color)) {
       setSelectedColors(selectedColors.filter((c) => c !== color))
@@ -40,6 +46,7 @@ const CategoryDetails = ({ onFilterChange, initialCategory = "" }) => {
     }
   }
 
+  // Handle size selection
   const handleSizeSelect = (size) => {
     if (selectedSizes.includes(size)) {
       setSelectedSizes(selectedSizes.filter((s) => s !== size))
@@ -48,6 +55,7 @@ const CategoryDetails = ({ onFilterChange, initialCategory = "" }) => {
     }
   }
 
+  // Handle style selection
   const handleStyleSelect = (style) => {
     if (selectedStyles.includes(style)) {
       setSelectedStyles(selectedStyles.filter((s) => s !== style))
@@ -56,11 +64,14 @@ const CategoryDetails = ({ onFilterChange, initialCategory = "" }) => {
     }
   }
 
+  // Handle category selection
   const handleCategorySelect = (category) => {
     setSelectedCategory(category)
   }
 
+  // Apply filters
   const applyFilters = () => {
+    // Collect all filter values
     const filters = {
       category: selectedCategory,
       priceRange,
@@ -69,11 +80,13 @@ const CategoryDetails = ({ onFilterChange, initialCategory = "" }) => {
       styles: selectedStyles,
     }
 
+    // Pass filters to parent component
     if (onFilterChange) {
       onFilterChange(filters)
     }
   }
 
+  // Reset all filters
   const resetFilters = () => {
     setPriceRange([50, 500])
     setSelectedColors([])
@@ -81,6 +94,7 @@ const CategoryDetails = ({ onFilterChange, initialCategory = "" }) => {
     setSelectedStyles([])
   }
 
+  // Update price labels on slider thumbs
   useEffect(() => {
     const el = document.querySelectorAll(".range-slider__thumb")
 
@@ -90,10 +104,12 @@ const CategoryDetails = ({ onFilterChange, initialCategory = "" }) => {
     }
   }, [priceRange])
 
+  // Fetch available filter options from API when category changes
   useEffect(() => {
     const fetchFilterOptions = async () => {
       try {
-        const products = await getProductsCategoryFilterApi(selectedCategory)
+
+        const products = await getProductsCategoryFilterApi({categoryselectedCategory}) || []
 
         const colors = [...new Set(products.map((p) => p.color).filter(Boolean))]
         const sizes = [...new Set(products.map((p) => p.size).filter(Boolean))]
@@ -114,6 +130,7 @@ const CategoryDetails = ({ onFilterChange, initialCategory = "" }) => {
           })),
         )
 
+
         setAvailableStyles(
           styles.map((style, index) => ({
             id: index + 1,
@@ -133,12 +150,14 @@ const CategoryDetails = ({ onFilterChange, initialCategory = "" }) => {
   }, [priceRange, selectedColors, selectedSizes, selectedStyles, selectedCategory])
 
   const categories = [
-    { id: 1, name: "T-shirt" },
-    { id: 2, name: "Men's-shoes" },
-    { id: 3, name: "Pants" },
-    { id: 4, name: "Socks" },
+    { id: 1, name: "T-shirts" },
+    { id: 2, name: "Shorts" },
+    { id: 3, name: "Shirts" },
+    { id: 4, name: "Hoodie" },
+    { id: 5, name: "Jeans" },
   ]
 
+  // Helper function to get color hex values
   const getColorHex = (colorName) => {
     const colorMap = {
       White: "#ffffff",
@@ -236,6 +255,7 @@ const CategoryDetails = ({ onFilterChange, initialCategory = "" }) => {
           </div>
         )}
       </div>
+
 
       {/* Size */}
       <div className="filter-section">

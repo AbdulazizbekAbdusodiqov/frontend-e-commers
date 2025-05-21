@@ -3,7 +3,7 @@ import instance from "./instance";
 
 export const getCategoriesApi = async()=>{
     try {
-        const res = await instance.get("/category")
+        const res = await instance.get("/categories")
         return res.data
         
     } catch (error) {

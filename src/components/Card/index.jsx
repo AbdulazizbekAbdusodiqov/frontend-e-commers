@@ -5,10 +5,7 @@ import "./Card.scss"
 import { Link } from 'react-router';
 
 const Card = ({ product }) => {
-    const [stars, setStars] = useState([]);
-    console.log("Bu Productni IDsi komron :",product.id);
-    
-
+    const [stars, setStars] = useState([]);    
     useEffect(() => {
         generateStars();
     }, [product]);
@@ -46,7 +43,7 @@ const Card = ({ product }) => {
     return (
         <div className='card'>
             <div className='image-wrapper'>
-                <Link to={`productDetail/${product.id}`}>
+                <Link to={`/productDetail/${product.id}`}>
                     <img style={{ width: "295px" }} src={product.images?.[0]} alt={product.title} />
                 </Link>
             </div>

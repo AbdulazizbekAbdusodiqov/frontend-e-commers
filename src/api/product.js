@@ -3,7 +3,7 @@ import instance from "./instance";
 
 export const getProductsApi = async () => {
     try {
-        const res = await instance.get("/Products")
+        const res = await instance.get("/products")
         console.log(res);
         return res.data
 
@@ -14,9 +14,8 @@ export const getProductsApi = async () => {
 
 export const getProductsCategoryFilterApi = async (query = "") => {
     try {
-        console.log("query: ",query);
-        
-        const res = await instance.get(`/Products?category=${query}`)
+        const categoryQuery = `category=${query.category}`
+        const res = await instance.get(`/products?${categoryQuery}`)
         return res.data
     } catch (error) {
         toast.error("Failed to fetch products")
